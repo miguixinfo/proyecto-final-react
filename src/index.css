@@ -1,0 +1,16 @@
+.ul-nav {
+  list-style-type: none;
+  overflow: hidden;
+  text-align: left;
+}
+
+.li-nav {
+  float: left;
+}
+
+.li-nav-navlink {
+  display: block;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+}
