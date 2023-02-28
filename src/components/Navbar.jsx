@@ -9,7 +9,8 @@ function Navbar() {
         <ul className="ul-nav">
           <li className="li-nav"><NavLink className="li-nav-navlink px-2" to="/">Home</NavLink></li>
           <li className="li-nav"><NavLink className="li-nav-navlink px-2" to="/comics">Comics</NavLink></li>
-          <li className="li-nav"><NavLink className="li-nav-navlink px-2" to="/peliculas">Películas</NavLink></li>
+          <li className="li-nav"><NavLink className="li-nav-navlink px-2" to="/series">Series</NavLink></li>
+          <li className="li-nav"><NavLink className="li-nav-navlink px-2" to="/characters">Personajes</NavLink></li>
         </ul>
       </div>
     </nav>
