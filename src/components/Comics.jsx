@@ -26,13 +26,13 @@ function Comics() {
     fetchComics(comicsUrl);
   }, []);
   return (
-    <div className="container">
+    <div className="container mb-4">
       <div className="row">
         <input type="text" placeholder="Busca un comic" className="form-control mt-4" value={searchTerm} onChange={handleChange} />
         {results.map((item) => (
           <div className="col-3 d-flex flex-wrap">
             <div className="card mt-4 text-center">
-              <img src={`${item.thumbnail.path}.${item.thumbnail.extension}`} height="300px"   alt="#" />
+              <img src={`${item.thumbnail.path}.${item.thumbnail.extension}`} height="300px" alt="#" />
               <h4 className="card-title">{item.title}</h4>
             </div>
           </div>

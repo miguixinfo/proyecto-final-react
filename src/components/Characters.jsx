@@ -26,7 +26,7 @@ function Characters() {
     fetchCharacters(charactersUrl);
   }, []);
   return (
-    <div className="container">
+    <div className="container mb-4">
       <div className="row">
         <input type="text" placeholder="Busca un Personaje" className="form-control mt-4" value={searchTerm} onChange={handleChange} />
         {results.map((item) => (
