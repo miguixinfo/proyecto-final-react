@@ -7,22 +7,22 @@ function Footer() {
     <div className="text-center text-lg-start bg-negro border-foot text-light">
       <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
         <div className="container text-center ">
-          <a className="btn text-white btn-floating btn-circle btn-foot mx-3 my-" href="#!">
-            <i className="fab fa-facebook" />
+          <a className="btn text-white btn-floating btn-circle btn-foot bg-facebook mx-3" href="#!">
+            <i className="fab fa-facebook " />
           </a>
-          <a className="btn text-white btn-floating btn-circle btn-foot mx-3 my-" href="#!">
+          <a className="btn text-white btn-floating btn-circle btn-foot bg-twitter mx-3" href="#!">
             <i className="fab fa-twitter" />
           </a>
-          <a className="btn text-white btn-floating btn-circle btn-foot mx-3 my-" href="#!">
+          <a className="btn text-white btn-floating btn-circle btn-foot bg-google mx-3" href="#!">
             <i className="fab fa-google" />
           </a>
-          <a className="btn text-white btn-floating btn-circle btn-foot mx-3 my-" href="#!">
+          <a className="btn text-white btn-floating btn-circle btn-foot bg-instagram mx-3" href="#!">
             <i className="fab fa-instagram" />
           </a>
-          <a className="btn text-white btn-floating btn-circle btn-foot mx-3 my-" href="#!">
+          <a className="btn text-white btn-floating btn-circle btn-foot bg-linkedin mx-3" href="#!">
             <i className="fab fa-linkedin-in" />
           </a>
-          <a className="btn text-white btn-floating btn-circle btn-foot mx-3 my-" href="#!">
+          <a className="btn text-white btn-floating btn-circle btn-foot bg-github mx-3" href="#!">
             <i className="fab fa-github" />
           </a>
         </div>
