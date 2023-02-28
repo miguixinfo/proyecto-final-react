@@ -1,3 +1,14 @@
+#bg-image {
+  background-image: url(assets/fondo-personajes.jpg);
+  background-size: cover;
+  height: 600px;
+}
+#mask {
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 600px;
+}
+
 .ul-nav {
   list-style-type: none;
   overflow: hidden;
@@ -55,4 +66,13 @@
 }
 .bg-github {
   background-color: #333333
+}
+
+.btn-circle.btn-foot {
+  width: 45px;
+  height: 45px;
+  padding: 6px 0px;
+  border-radius: 30px;
+  font-size: 20px;
+  text-align: center;
 }
