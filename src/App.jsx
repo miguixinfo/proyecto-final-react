@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Series from './components/Series';
 import Error from './components/Error';
 import Characters from './components/Characters';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/characters" element={<Characters />} />
         <Route path="*" element={<Error />} />
       </Routes>
+      <Footer />
     </>
   );
 }
