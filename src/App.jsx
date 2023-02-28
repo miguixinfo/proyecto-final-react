@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import Comics from './components/Comics';
 import Home from './components/Home';
 import Navbar from './components/Navbar';
-import Peliculas from './components/Peliculas';
+import Peliculas from './components/Series';
 import Error from './components/Error';
 
 function App() {
