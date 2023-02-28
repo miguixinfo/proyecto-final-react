@@ -28,7 +28,7 @@ function Comics() {
   return (
     <div className="container">
       <div className="row">
-        <input type="text" placeholder="Search" value={searchTerm} onChange={handleChange} />
+        <input type="text" placeholder="Busca un comic" className="form-control mt-4" value={searchTerm} onChange={handleChange} />
         {results.map((item) => (
           <div className="col">
             <div className="card mt-4 text-center">
