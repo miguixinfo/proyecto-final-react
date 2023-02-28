@@ -31,7 +31,7 @@ function Peliculas() {
       <div className="row">
         <input type="text" className="form-control mt-4" placeholder="Busca una serie" value={searchTerm} onChange={handleChange} />
         {results.map((item) => (
-          <div className="col-3">
+          <div className="col-3 d-flex flex-wrap">
             <div className="card mt-4 text-center">
               <img src={`${item.thumbnail.path}.${item.thumbnail.extension}`} className="img-fluid" height="300px" alt="#" />
               <h4 className="card-title">{item.title}</h4>
