@@ -5,6 +5,7 @@ import Home from './components/Home';
 import Navbar from './components/Navbar';
 import Peliculas from './components/Peliculas';
 import Error from './components/Error';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/peliculas" element={<Peliculas />} />
         <Route path="*" element={<Error />} />
       </Routes>
+      <Footer />
     </>
   );
 }
