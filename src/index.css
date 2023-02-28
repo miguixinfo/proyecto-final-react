@@ -76,3 +76,10 @@
   font-size: 20px;
   text-align: center;
 }
+
+.scroll {
+  width: 100%;
+  height: auto;
+  overflow: scroll;
+  overflow-x: hidden;
+}
