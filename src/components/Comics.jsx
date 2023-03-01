@@ -32,7 +32,7 @@ function Comics() {
         {results.map((item) => (
           <div className="col-3 d-flex flex-wrap">
             <div className="card mt-4 text-center">
-              <img src={`${item.thumbnail.path}.${item.thumbnail.extension}`} height="300px" alt="#" />
+              <img src={`${item.thumbnail.path}.${item.thumbnail.extension}`} width="300px" height="300px" alt="#" />
               <h4 className="card-title">{item.title}</h4>
             </div>
           </div>
