@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
-function Comics() {
-  const comicsUrl = 'http://gateway.marvel.com/v1/public/comics?&ts=1&apikey=ad6ea905acb56b4f31146d812a2568a1&hash=e666c45f929cb194ce2111c743dc3ff9';
+function Characters() {
+  const charactersUrl = 'http://gateway.marvel.com/v1/public/characters?&ts=1&apikey=ad6ea905acb56b4f31146d812a2568a1&hash=e666c45f929cb194ce2111c743dc3ff9';
 
-  const [comics, setComics] = useState([]);
-
+  const [characters, setCharacters] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const fetchComics = (comicsUrl) => {
-    fetch(comicsUrl)
+
+  const fetchCharacters = (charactersUrl) => {
+    fetch(charactersUrl)
       .then((response) => response.json())
       .then((data) => {
-        setComics(data.data.results);
+        setCharacters(data.data.results);
       })
       .catch((error) => console.log(error));
   };
@@ -19,21 +19,21 @@ function Comics() {
   };
 
   const results = !searchTerm
-    ? comics
-    : comics.filter((item) => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
+    ? characters
+    : characters.filter((item) => item.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
   useEffect(() => {
-    fetchComics(comicsUrl);
+    fetchCharacters(charactersUrl);
   }, []);
   return (
     <div className="container mb-4">
       <div className="row">
-        <input type="text" placeholder="Busca un comic" className="form-control mt-4" value={searchTerm} onChange={handleChange} />
+        <input type="text" placeholder="Busca un Personaje" className="form-control mt-4" value={searchTerm} onChange={handleChange} />
         {results.map((item) => (
           <div className="col-3 d-flex flex-wrap">
             <div className="card mt-4 text-center">
               <img src={`${item.thumbnail.path}.${item.thumbnail.extension}`} height="300px" alt="#" />
-              <h4 className="card-title">{item.title}</h4>
+              <h4 className="card-title">{item.name}</h4>
             </div>
           </div>
         ))}
@@ -43,4 +43,4 @@ function Comics() {
   );
 }
 
-export default Comics;
+export default Characters;
