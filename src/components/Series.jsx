@@ -1,34 +1,35 @@
 import React, { useState, useEffect } from 'react';
 
-function Comics() {
-  const comicsUrl = 'http://gateway.marvel.com/v1/public/comics?&ts=1&apikey=ad6ea905acb56b4f31146d812a2568a1&hash=e666c45f929cb194ce2111c743dc3ff9';
+function Peliculas() {
+  const seriesUrl = 'http://gateway.marvel.com/v1/public/series?&ts=1&apikey=ad6ea905acb56b4f31146d812a2568a1&hash=e666c45f929cb194ce2111c743dc3ff9';
 
-  const [comics, setComics] = useState([]);
-
+  const [series, setSeries] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const fetchComics = (comicsUrl) => {
-    fetch(comicsUrl)
+
+  const fetchSeries = (seriesUrl) => {
+    fetch(seriesUrl)
       .then((response) => response.json())
       .then((data) => {
-        setComics(data.data.results);
+        setSeries(data.data.results);
       })
       .catch((error) => console.log(error));
   };
+
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
   };
 
   const results = !searchTerm
-    ? comics
-    : comics.filter((item) => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
+    ? series
+    : series.filter((item) => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
 
   useEffect(() => {
-    fetchComics(comicsUrl);
+    fetchSeries(seriesUrl);
   }, []);
   return (
     <div className="container mb-4">
       <div className="row">
-        <input type="text" placeholder="Busca un comic" className="form-control mt-4" value={searchTerm} onChange={handleChange} />
+        <input type="text" className="form-control mt-4" placeholder="Busca una serie" value={searchTerm} onChange={handleChange} />
         {results.map((item) => (
           <div className="col-3 d-flex flex-wrap">
             <div className="card mt-4 text-center">
@@ -43,4 +44,4 @@ function Comics() {
   );
 }
 
-export default Comics;
+export default Peliculas;
