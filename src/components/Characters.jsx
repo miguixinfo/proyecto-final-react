@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { getCharacters } from '../services/Characters';
 
 function Characters() {
   const charactersUrl = 'http://gateway.marvel.com/v1/public/characters?&ts=1&apikey=ad6ea905acb56b4f31146d812a2568a1&hash=e666c45f929cb194ce2111c743dc3ff9';
 
   const [characters, setCharacters] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() => {
+    getCharacters((data) => setCharacters(data.data.results));
+  }, []);
 
   const fetchCharacters = (charactersUrl) => {
     fetch(charactersUrl)
