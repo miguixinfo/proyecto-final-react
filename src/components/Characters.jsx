@@ -8,17 +8,9 @@ function Characters() {
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    getCharacters((data) => setCharacters(data.data.results));
+    getCharacters().then((personajes) => setCharacters(personajes.data.results));
   }, []);
 
-  const fetchCharacters = (charactersUrl) => {
-    fetch(charactersUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        setCharacters(data.data.results);
-      })
-      .catch((error) => console.log(error));
-  };
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
   };
@@ -27,9 +19,6 @@ function Characters() {
     ? characters
     : characters.filter((item) => item.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
-  useEffect(() => {
-    fetchCharacters(charactersUrl);
-  }, []);
   return (
     <div className="container mb-4">
       <div className="row">
