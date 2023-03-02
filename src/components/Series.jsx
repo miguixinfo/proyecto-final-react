@@ -6,8 +6,8 @@ function Peliculas() {
   const [series, setSeries] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
-  const fetchSeries = (seriesUrl) => {
-    fetch(seriesUrl)
+  const fetchSeries = (seriesURL) => {
+    fetch(seriesURL)
       .then((response) => response.json())
       .then((data) => {
         setSeries(data.data.results);

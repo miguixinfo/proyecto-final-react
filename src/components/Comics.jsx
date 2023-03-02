@@ -6,8 +6,8 @@ function Comics() {
   const [comics, setComics] = useState([]);
 
   const [searchTerm, setSearchTerm] = useState('');
-  const fetchComics = (comicsUrl) => {
-    fetch(comicsUrl)
+  const fetchComics = (comicsURL) => {
+    fetch(comicsURL)
       .then((response) => response.json())
       .then((data) => {
         setComics(data.data.results);
