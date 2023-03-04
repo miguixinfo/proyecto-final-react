@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import { getCharacters } from '../services/Characters';
 
 function Characters() {
@@ -25,10 +26,12 @@ function Characters() {
         <input type="text" placeholder="Busca un Personaje" className="form-control mt-4" value={searchTerm} onChange={handleChange} />
         {results.map((item) => (
           <div className="col-3 d-flex flex-wrap">
-            <div className="card mt-4 text-center">
-              <img src={`${item.thumbnail.path}.${item.thumbnail.extension}`} height="300px" alt="#" />
-              <h4 className="card-title">{item.name}</h4>
-            </div>
+            <NavLink to={`${item.id}`}>
+              <div className="card mt-4 text-center">
+                <img src={`${item.thumbnail.path}.${item.thumbnail.extension}`} height="300px" alt="#" />
+                <h4 className="card-title">{item.name}</h4>
+              </div>
+            </NavLink>
           </div>
         ))}
 
