@@ -10,6 +10,7 @@ function Comics() {
 
   // eslint-disable-next-line max-len
   /* Esta función se utiliza para recuperar datos de una URL específica con el método fetch. Primero hace una solicitud fetch a la URL especificada, luego toma la respuesta y la convierte en un objeto JSON, luego establece la variable Comics con los resultados del objeto JSON y, por último, captura cualquier error que se produzca durante el proceso. */
+
   useEffect(() => {
     getComics().then((comic) => setComics(comic.data.results));
   }, []);
