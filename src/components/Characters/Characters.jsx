@@ -6,7 +6,7 @@ import { getCharacters } from '../../services/Characters';
 function Characters() {
   const [characters, setCharacters] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  //Paginacion
+  // Paginacion
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
 
@@ -18,7 +18,7 @@ function Characters() {
     setSearchTerm(event.target.value);
   };
 
-  //paginacion
+  // paginacion
   const loadCharacters = async () => {
     const offset = (currentPage - 1) * 20; // 20 characters per page
     const response = await axios.get(
