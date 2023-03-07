@@ -17,10 +17,18 @@ function CardSeries() {
   }
 
   return (
-    <div>
-      <h1>{serie.title}</h1>
-      <img src={`${serie.thumbnail.path}.${serie.thumbnail.extension}`} height="300px" alt="#" />
-      <p>{serie.description}</p>
+    <div className="card text-left card-css shadow my-5">
+      <div className="row">
+        <div className="col-6">
+          <img className="card-img-top img-fluid" src={`${serie.thumbnail.path}.${serie.thumbnail.extension}`} height="300px" alt="#" />
+        </div>
+        <div className="col-6">
+          <div className="card-body">
+            <h4 className="card-title">{serie.title}</h4>
+            <p className="card-text">{serie.description}</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -17,10 +17,18 @@ function CardComics() {
   }
 
   return (
-    <div>
-      <h1>{comic.title}</h1>
-      <img src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} height="300px" alt="#" />
-      <p>{comic.description}</p>
+    <div className="card text-left card-css shadow my-5">
+      <div className="row">
+        <div className="col-6">
+          <img className="card-img-top img-fluid" src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} height="300px" alt="#" />
+        </div>
+        <div className="col-6">
+          <div className="card-body">
+            <h4 className="card-title">{comic.title}</h4>
+            <p className="card-text">{comic.description}</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
