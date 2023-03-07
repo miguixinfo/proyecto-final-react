@@ -20,7 +20,6 @@ function Home() {
       </div>
 
     </div>
-
   );
 }
 
