@@ -89,3 +89,17 @@
   overflow: scroll;
   overflow-x: hidden;
 }
+
+.card-css {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.link-css {
+  text-decoration: none;
+  color: rgb(43, 43, 43);
+}
+.link-css:hover {
+  color: black;
+  text-shadow: 1px 1px 1px black;
+}
