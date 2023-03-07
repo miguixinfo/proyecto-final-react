@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getCharacter } from '../services/Characters';
+import { getCharacter } from '../../services/Characters';
 
 function CardCharacters() {
   const { characterId } = useParams();
