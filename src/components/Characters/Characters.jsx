@@ -50,6 +50,14 @@ function Characters() {
     <div className="container mb-4">
       <div className="row">
         <input type="text" placeholder="Busca un Personaje" className="form-control mt-4" value={searchTerm} onChange={handleChange} />
+        <div className="d-flex justify-content-center align-items-center">
+          <button type="button" className="btn btn-danger btn-lg mt-5 mr-5 p-1" onClick={handlePrevClick} disabled={currentPage === 1}>
+            Previous
+          </button>
+          <button type="button" className="btn btn-danger btn-lg mr-5 ml-5 mt-5 p-1" onClick={handleNextClick} disabled={currentPage === totalPages}>
+            Next
+          </button>
+        </div>
         {results.map((item) => (
           <div className="col-3 d-flex flex-wrap">
             <NavLink to={`${item.id}`} className="d-flex link-css">

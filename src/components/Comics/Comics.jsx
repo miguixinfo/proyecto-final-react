@@ -62,6 +62,14 @@ function Comics() {
         {/* eslint-disable-next-line max-len */}
         {/* A esto le damos con value serchterm, y ponemos que cuando cambie su valor se llame a la función handlechange que cambia el valor de la variable searchTerm */}
         <input type="text" placeholder="Busca un comic" className="form-control mt-4" value={searchTerm} onChange={handleChange} />
+        <div className="d-flex justify-content-center align-items-center">
+          <button type="button" className="btn btn-danger btn-lg mt-5 mr-5 p-1" onClick={handlePrevClick} disabled={currentPage === 1}>
+            Previous
+          </button>
+          <button type="button" className="btn btn-danger btn-lg mr-5 ml-5 mt-5 p-1" onClick={handleNextClick} disabled={currentPage === totalPages}>
+            Next
+          </button>
+        </div>
         {results.map((item) => (
           <div className="col-3 d-flex flex-wrap">
 
