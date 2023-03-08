@@ -45,18 +45,40 @@ function Series() {
     ? series
     : series.filter((item) => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
 
+  const topButton = document.getElementById('topBtn');
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      topButton.style.display = 'block';
+    } else {
+      topButton.style.display = 'none';
+    }
+  }
+
+  // Cuando el usuario baja 20px en el document, se muestra el boton 'topBtn'
+  window.onscroll = function f() { scrollFunction(); };
+
+  // Funcion scroll al inicio del documento
+  function topFunction() {
+    document.documentElement.scrollTop = 0;
+  }
+
+  // Funcion para poner dos (o mas) funciones a la vez en el onClick de Next
+  function hacerTodoNext() {
+    handleNextClick();
+    topFunction();
+  }
+
+  // Funcion (igual a la anterior) pero para Previous
+  function hacerTodoPrevious() {
+    handlePrevClick();
+    topFunction();
+  }
+
   return (
     <div className="container mb-4">
       <div className="row">
         <input type="text" className="form-control mt-4" placeholder="Busca una serie" value={searchTerm} onChange={handleChange} />
-        <div className="d-flex justify-content-center align-items-center">
-          <button type="button" className="btn btn-danger btn-lg mt-5 mr-5 p-1" onClick={handlePrevClick} disabled={currentPage === 1}>
-            Previous
-          </button>
-          <button type="button" className="btn btn-danger btn-lg mr-5 ml-5 mt-5 p-1" onClick={handleNextClick} disabled={currentPage === totalPages}>
-            Next
-          </button>
-        </div>
         {results.map((item) => (
           <div className="col-3 d-flex flex-wrap">
             <NavLink to={`${item.id}`} className="d-flex link-css">
@@ -70,11 +92,18 @@ function Series() {
 
       </div>
       <div className="d-flex justify-content-center align-items-center">
-        <button type="button" className="btn btn-danger btn-lg mt-5 mr-5 p-1" onClick={handlePrevClick} disabled={currentPage === 1}>
-          Previous
-        </button>
-        <button type="button" className="btn btn-danger btn-lg mr-5 ml-5 mt-5 p-1" onClick={handleNextClick} disabled={currentPage === totalPages}>
-          Next
+        <div className="btn-group">
+          <button type="button" className="btn text-light btn-block btnPaginacion my-5" onClick={hacerTodoPrevious} disabled={currentPage === 1}>
+            Previous
+          </button>
+          <button type="button" className="btn text-light btn-block btnPaginacion my-5" onClick={hacerTodoNext} disabled={currentPage === totalPages}>
+            Next
+          </button>
+        </div>
+      </div>
+      <div className="div">
+        <button type="button" onClick={topFunction} id="topBtn" title="Go to top">
+          <i className="fa-regular fa-circle-up" />
         </button>
       </div>
     </div>

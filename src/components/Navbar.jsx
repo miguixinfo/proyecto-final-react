@@ -9,10 +9,10 @@ function Navbar() {
       <div className="container-fluid">
         <img src={ImgHeader} alt="" width="150" height="70" />
         <ul className="ul-nav">
-          <li className="li-nav"><NavLink className="li-nav-navlink btn border third mx-2" to="/">Home</NavLink></li>
-          <li className="li-nav"><NavLink className="li-nav-navlink btn border third mx-2" to="/comics">Comics</NavLink></li>
-          <li className="li-nav"><NavLink className="li-nav-navlink btn border third mx-2" to="/series">Series</NavLink></li>
-          <li className="li-nav"><NavLink className="li-nav-navlink btn border third mx-2" to="/characters">Personajes</NavLink></li>
+          <li className="li-nav"><NavLink className="li-nav-navlink btn border btnNavbar mx-2 my-2" to="/">Home</NavLink></li>
+          <li className="li-nav"><NavLink className="li-nav-navlink btn border btnNavbar mx-2 my-2" to="/comics">Comics</NavLink></li>
+          <li className="li-nav"><NavLink className="li-nav-navlink btn border btnNavbar mx-2 my-2" to="/series">Series</NavLink></li>
+          <li className="li-nav"><NavLink className="li-nav-navlink btn border btnNavbar mx-2 my-2" to="/characters">Personajes</NavLink></li>
         </ul>
       </div>
     </nav>
