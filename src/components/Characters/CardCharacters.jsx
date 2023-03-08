@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { getCharacter } from '../../services/Characters';
 import '../../index.css';
 
@@ -31,7 +31,10 @@ function CardCharacters() {
             <p className="card-text">{character.description}</p>
             <h4 className="card-title">Comics</h4>
             {comics.map((item) => (
-              <p>{item.name}</p>
+              <NavLink to="#">
+                <p>{item.name}</p>
+              </NavLink>
+
             ))}
           </div>
         </div>
