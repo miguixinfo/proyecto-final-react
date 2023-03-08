@@ -7,11 +7,13 @@ function CardCharacters() {
   const { characterId } = useParams();
   const [character, setCharacter] = useState();
   const [comics, setComics] = useState();
+  const [series, setSeries] = useState();
 
   useEffect(() => {
     getCharacter(characterId).then((result) => {
       setCharacter(result.data.results[0]);
       setComics(result.data.results[0].comics.items);
+      setSeries(result.data.results[0].series.items);
     });
   }, [characterId]);
 
@@ -34,9 +36,13 @@ function CardCharacters() {
           <div className="card-body">
             <h4 className="card-title">{character.name}</h4>
             <p className="card-text">{character.description}</p>
-            <h4 className="card-title">Comics en los que aparecce el personaje.</h4>
+            <h4 className="card-title">Comics</h4>
             {comics.map((item) => (
               <NavLink to={`../comics/${sacarIdComic(item.resourceURI)}`}><p>{item.name}</p></NavLink>
+            ))}
+            <h4 className="card-title">Series</h4>
+            {series.map((item) => (
+              <NavLink to={`../series/${sacarIdComic(item.resourceURI)}`}><p>{item.name}</p></NavLink>
             ))}
           </div>
         </div>

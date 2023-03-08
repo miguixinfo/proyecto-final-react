@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, NavLink } from 'react-router-dom';
 import { getSerie } from '../../services/Series';
 
 function CardSeries() {
   const { serieId } = useParams();
-  const [serie, setComic] = useState();
+  const [serie, setSerie] = useState();
+  const [comics, setComics] = useState();
+  const [characters, setCharacter] = useState();
 
   useEffect(() => {
     getSerie(serieId).then((result) => {
-      setComic(result.data.results[0]);
+      setSerie(result.data.results[0]);
+      setComics(result.data.results[0].comics.items);
+      setCharacter(result.data.results[0].characters.items);
     });
   }, [serieId]);
 
@@ -16,6 +20,10 @@ function CardSeries() {
     return <div>Cargando...</div>;
   }
 
+  function sacarIdCharacter(url) {
+    const splited = url.split('/');
+    return splited[splited.length - 1];
+  }
   return (
     <div className="card text-left card-css shadow my-5">
       <div className="row">
@@ -26,6 +34,14 @@ function CardSeries() {
           <div className="card-body">
             <h4 className="card-title">{serie.title}</h4>
             <p className="card-text">{serie.description}</p>
+            <h4 className="card-title">Personajes</h4>
+            {characters.map((item) => (
+              <NavLink to={`../characters/${sacarIdCharacter(item.resourceURI)}`}><p>{item.name}</p></NavLink>
+            ))}
+            <h4 className="card-title">Comics</h4>
+            {comics.map((item) => (
+              <NavLink to={`../comics/${sacarIdCharacter(item.resourceURI)}`}><p>{item.name}</p></NavLink>
+            ))}
           </div>
         </div>
       </div>

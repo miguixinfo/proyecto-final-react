@@ -22,7 +22,7 @@ function Series() {
   const loadSeries = async () => {
     const offset = (currentPage - 1) * 20; // 20 characters per page
     const response = await axios.get(
-      `http://gateway.marvel.com/v1/public/comics?limit=20&offset=${offset}&ts=1&apikey=ad6ea905acb56b4f31146d812a2568a1&hash=e666c45f929cb194ce2111c743dc3ff9`,
+      `http://gateway.marvel.com/v1/public/series?limit=20&offset=${offset}&ts=1&apikey=ad6ea905acb56b4f31146d812a2568a1&hash=e666c45f929cb194ce2111c743dc3ff9`,
     );
     const { data } = response.data;
     setSeries(data.results);
