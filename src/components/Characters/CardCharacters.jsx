@@ -6,10 +6,12 @@ import '../../index.css';
 function CardCharacters() {
   const { characterId } = useParams();
   const [character, setCharacter] = useState();
+  const [comics, setComics] = useState([]);
 
   useEffect(() => {
     getCharacter(characterId).then((result) => {
       setCharacter(result.data.results[0]);
+      setComics(result.data.results[0].comics.items);
     });
   }, [characterId]);
 
@@ -27,6 +29,10 @@ function CardCharacters() {
           <div className="card-body">
             <h4 className="card-title">{character.name}</h4>
             <p className="card-text">{character.description}</p>
+            <h4 className="card-title">Comics</h4>
+            {comics.map((item) => (
+              <p>{item.name}</p>
+            ))}
           </div>
         </div>
       </div>
