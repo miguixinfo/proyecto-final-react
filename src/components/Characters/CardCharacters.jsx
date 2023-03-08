@@ -6,7 +6,7 @@ import '../../index.css';
 function CardCharacters() {
   const { characterId } = useParams();
   const [character, setCharacter] = useState();
-  const [comics, setComics] = useState([]);
+  const [comics, setComics] = useState();
 
   useEffect(() => {
     getCharacter(characterId).then((result) => {
@@ -19,6 +19,11 @@ function CardCharacters() {
     return <div>Cargando...</div>;
   }
 
+  function sacarIdComic(url) {
+    const splited = url.split('/');
+    return splited[splited.length - 1];
+  }
+
   return (
     <div className="card text-left card-css shadow my-5">
       <div className="row">
@@ -29,12 +34,9 @@ function CardCharacters() {
           <div className="card-body">
             <h4 className="card-title">{character.name}</h4>
             <p className="card-text">{character.description}</p>
-            <h4 className="card-title">Comics</h4>
+            <h4 className="card-title">Comics en los que aparecce el personaje.</h4>
             {comics.map((item) => (
-              <NavLink to="#">
-                <p>{item.name}</p>
-              </NavLink>
-
+              <NavLink to={`../comics/${sacarIdComic(item.resourceURI)}`}><p>{item.name}</p></NavLink>
             ))}
           </div>
         </div>
