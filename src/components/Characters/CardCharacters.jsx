@@ -36,14 +36,20 @@ function CardCharacters() {
           <div className="card-body">
             <h4 className="card-title">{character.name}</h4>
             <p className="card-text">{character.description}</p>
-            <h4 className="card-title">Comics</h4>
-            {comics.map((item) => (
-              <NavLink to={`../comics/${sacarIdComic(item.resourceURI)}`}><p>{item.name}</p></NavLink>
-            ))}
-            <h4 className="card-title">Series</h4>
-            {series.map((item) => (
-              <NavLink to={`../series/${sacarIdComic(item.resourceURI)}`}><p>{item.name}</p></NavLink>
-            ))}
+            <div className="row">
+              <div className="col-6">
+                <h4 className="card-title">Comics</h4>
+                {comics.map((item) => (
+                  <NavLink to={`../comics/${sacarIdComic(item.resourceURI)}`} className="d-flex link-cards"><p>{item.name}</p></NavLink>
+                ))}
+              </div>
+              <div className="col-6">
+                <h4 className="card-title">Series</h4>
+                {series.map((item) => (
+                  <NavLink to={`../series/${sacarIdComic(item.resourceURI)}`} className="d-flex link-cards"><p>{item.name}</p></NavLink>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
