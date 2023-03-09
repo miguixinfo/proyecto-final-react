@@ -5,14 +5,14 @@ import '../index.css';
 
 function Navbar() {
   return (
-    <nav className="navbar bg-rojomarvel">
+    <nav className="navbar navbar--bg__rojomarvel">
       <div className="container-fluid">
         <img src={ImgHeader} alt="" width="150" height="70" />
-        <ul className="ul-nav">
-          <li className="li-nav"><NavLink className="li-nav-navlink btn border btnNavbar mx-2 my-2" to="/">Home</NavLink></li>
-          <li className="li-nav"><NavLink className="li-nav-navlink btn border btnNavbar mx-2 my-2" to="/comics">Comics</NavLink></li>
-          <li className="li-nav"><NavLink className="li-nav-navlink btn border btnNavbar mx-2 my-2" to="/series">Series</NavLink></li>
-          <li className="li-nav"><NavLink className="li-nav-navlink btn border btnNavbar mx-2 my-2" to="/characters">Personajes</NavLink></li>
+        <ul className="navbar--ul">
+          <li className="navbar--li"><NavLink className="navbar--navlink btn border navbar--btn mx-2 my-2" to="/">Home</NavLink></li>
+          <li className="navbar--li"><NavLink className="navbar--navlink btn border navbar--btn mx-2 my-2" to="/comics">Comics</NavLink></li>
+          <li className="navbar--li"><NavLink className="navbar--navlink btn border navbar--btn mx-2 my-2" to="/series">Series</NavLink></li>
+          <li className="navbar--li"><NavLink className="navbar--navlink btn border navbar--btn mx-2 my-2" to="/characters">Personajes</NavLink></li>
         </ul>
       </div>
     </nav>

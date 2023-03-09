@@ -25,7 +25,7 @@ function CardSeries() {
     return splited[splited.length - 1];
   }
   return (
-    <div className="card text-left card-css shadow my-5">
+    <div className="card text-left card--css shadow my-5">
       <div className="row">
         <div className="col-6">
           <img className="card-img-top img-fluid" src={`${serie.thumbnail.path}.${serie.thumbnail.extension}`} height="300px" alt="#" />
