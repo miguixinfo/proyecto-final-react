@@ -95,7 +95,7 @@ function Comics() {
         {results.map((item) => (
           <div className="col-3 d-flex flex-wrap">
 
-            <NavLink to={`${item.id}`} className="d-flex card--link">
+            <NavLink to={`${item.id}`} className="d-flex link-css">
               <div className="card shadow mt-4 text-center">
 
                 <img src={`${item.thumbnail.path}.${item.thumbnail.extension}`} width="300px" height="300px" alt="#" />
