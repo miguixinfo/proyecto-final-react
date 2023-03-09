@@ -95,7 +95,7 @@ function Comics() {
         {results.map((item) => (
           <div className="col-3 d-flex flex-wrap">
 
-            <NavLink to={`${item.id}`} className="d-flex link-css">
+            <NavLink to={`${item.id}`} className="d-flex card--link">
               <div className="card shadow mt-4 text-center">
 
                 <img src={`${item.thumbnail.path}.${item.thumbnail.extension}`} width="300px" height="300px" alt="#" />
@@ -108,10 +108,10 @@ function Comics() {
       </div>
       <div className="d-flex justify-content-center align-items-center">
         <div className="btn-group">
-          <button type="button" className="btn text-light btn-block btnPaginacion my-5" onClick={hacerTodoPrevious} disabled={currentPage === 1}>
+          <button type="button" className="btn text-light btn-block paginacion--btn my-5" onClick={hacerTodoPrevious} disabled={currentPage === 1}>
             Previous
           </button>
-          <button type="button" className="btn text-light btn-block btnPaginacion my-5" onClick={hacerTodoNext} disabled={currentPage === totalPages}>
+          <button type="button" className="btn text-light btn-block paginacion--btn my-5" onClick={hacerTodoNext} disabled={currentPage === totalPages}>
             Next
           </button>
         </div>
