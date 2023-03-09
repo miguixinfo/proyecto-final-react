@@ -96,12 +96,22 @@
 }
 
 .link-css {
-  text-decoration: none;
   color: rgb(43, 43, 43);
+  text-decoration: none;
 }
 .link-css:hover {
   color: black;
-  text-shadow: 1px 1px 1px black;
+  text-shadow: 0px 0px 1px black;
+}
+
+.link-cards {
+  color: rgb(43, 43, 43);
+  text-decoration-style: solid;
+}
+.link-cards:hover {
+  color: black;
+  text-shadow: 0px 0px 1px black;
+  text-decoration: none;
 }
 
 #topBtn {
