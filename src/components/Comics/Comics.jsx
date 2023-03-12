@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 import { getComics } from '../../services/Comics';
+import '../../index.css';
 
 function Comics() {
-  const comicsUrl = 'http://gateway.marvel.com/v1/public/comics?&ts=1&apikey=ad6ea905acb56b4f31146d812a2568a1&hash=e666c45f929cb194ce2111c743dc3ff9';
-
   const [comics, setComics] = useState([]);
 
   const [searchTerm, setSearchTerm] = useState('');
 
+  // Paginacion
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
   // eslint-disable-next-line max-len
   /* Esta función se utiliza para recuperar datos de una URL específica con el método fetch. Primero hace una solicitud fetch a la URL especificada, luego toma la respuesta y la convierte en un objeto JSON, luego establece la variable Comics con los resultados del objeto JSON y, por último, captura cualquier error que se produzca durante el proceso. */
 
@@ -21,6 +24,58 @@ function Comics() {
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
   };
+
+  const loadComics = async () => {
+    const offset = (currentPage - 1) * 20; // 20 characters per page
+    const response = await axios.get(
+      `http://gateway.marvel.com/v1/public/comics?limit=20&offset=${offset}&ts=1&apikey=ad6ea905acb56b4f31146d812a2568a1&hash=e666c45f929cb194ce2111c743dc3ff9`,
+    );
+    const { data } = response.data;
+    setComics(data.results);
+    setTotalPages(Math.ceil(data.total / 20));
+  };
+
+  useEffect(() => {
+    loadComics();
+  }, [currentPage]);
+
+  const handlePrevClick = () => {
+    setCurrentPage((prevPage) => prevPage - 1);
+  };
+
+  const handleNextClick = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const topButton = document.getElementById('topBtn');
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      topButton.style.display = 'block';
+    } else {
+      topButton.style.display = 'none';
+    }
+  }
+
+  // Cuando el usuario baja 20px en el document, se muestra el boton 'topBtn'
+  window.onscroll = function f() { scrollFunction(); };
+
+  // Funcion scroll al inicio del documento
+  function topFunction() {
+    document.documentElement.scrollTop = 0;
+  }
+
+  // Funcion para poner dos (o mas) funciones a la vez en el onClick de Next
+  function hacerTodoNext() {
+    handleNextClick();
+    topFunction();
+  }
+
+  // Funcion (igual a la anterior) pero para Previous
+  function hacerTodoPrevious() {
+    handlePrevClick();
+    topFunction();
+  }
 
   // eslint-disable-next-line max-len
   // Esta linea de código está filtrando una lista de cómics en base a un término de búsqueda. Si el término de búsqueda es nulo (searchTerm es falso), el código devolverá la lista completa de cómics, de lo contrario, devolverá la lista filtrada de cómics donde el título de los cómics contengan el término de búsqueda. El término de búsqueda y los títulos de los cómics están en minúsculas para evitar problemas con mayúsculas y minúsculas.
@@ -38,16 +93,33 @@ function Comics() {
         {/* A esto le damos con value serchterm, y ponemos que cuando cambie su valor se llame a la función handlechange que cambia el valor de la variable searchTerm */}
         <input type="text" placeholder="Busca un comic" className="form-control mt-4" value={searchTerm} onChange={handleChange} />
         {results.map((item) => (
-          <div className="col-3 ">
-            <NavLink to={`${item.id}`}>
-              <div className="card mt-4 text-center">
+          <div className="col-3 d-flex flex-wrap">
+
+            <NavLink to={`${item.id}`} className="d-flex card--link">
+              <div className="card shadow mt-4 text-center">
+
                 <img src={`${item.thumbnail.path}.${item.thumbnail.extension}`} width="300px" height="300px" alt="#" />
-                <h4 className="card-title">{item.title}</h4>
+                <h4 className="card-title my-3">{item.title}</h4>
               </div>
             </NavLink>
           </div>
         ))}
 
+      </div>
+      <div className="d-flex justify-content-center align-items-center">
+        <div className="btn-group">
+          <button type="button" className="btn text-light btn-block paginacion--btn my-5" onClick={hacerTodoPrevious} disabled={currentPage === 1}>
+            Previous
+          </button>
+          <button type="button" className="btn text-light btn-block paginacion--btn my-5" onClick={hacerTodoNext} disabled={currentPage === totalPages}>
+            Next
+          </button>
+        </div>
+      </div>
+      <div className="div">
+        <button type="button" onClick={topFunction} id="topBtn" title="Go to top">
+          <i className="fa-regular fa-circle-up" />
+        </button>
       </div>
     </div>
   );

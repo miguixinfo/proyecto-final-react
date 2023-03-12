@@ -14,3 +14,8 @@ export async function getCharacter(id) {
   const person = await respuesta.json();
   return person;
 }
+export async function getComics(url) {
+  const respuesta = await fetch(`${url}${urlKey}`);
+  const comics = await respuesta.json();
+  return comics;
+}
