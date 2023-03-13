@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import axios from 'axios';
 import { getComics } from '../../services/Comics';
 import '../../index.css';
 
@@ -26,11 +25,11 @@ function Comics() {
   };
 
   const loadComics = async () => {
-    const offset = (currentPage - 1) * 20; // 20 characters per page
-    const response = await axios.get(
+    const offset = (currentPage - 1) * 20; // 20 comicsc per page
+    const response = await fetch(
       `http://gateway.marvel.com/v1/public/comics?limit=20&offset=${offset}&ts=1&apikey=ad6ea905acb56b4f31146d812a2568a1&hash=e666c45f929cb194ce2111c743dc3ff9`,
     );
-    const { data } = response.data;
+    const { data } = await response.json();
     setComics(data.results);
     setTotalPages(Math.ceil(data.total / 20));
   };
@@ -39,14 +38,13 @@ function Comics() {
     loadComics();
   }, [currentPage]);
 
-  const handlePrevClick = () => {
-    setCurrentPage((prevPage) => prevPage - 1);
-  };
+  function handlePrevClick() {
+    setCurrentPage(currentPage - 1);
+  }
 
-  const handleNextClick = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
-  };
-
+  function handleNextClick() {
+    setCurrentPage(currentPage + 1);
+  }
   const topButton = document.getElementById('topBtn');
 
   function scrollFunction() {
@@ -95,7 +93,7 @@ function Comics() {
         {results.map((item) => (
           <div className="col-3 d-flex flex-wrap">
 
-            <NavLink to={`${item.id}`} className="d-flex card--link">
+            <NavLink to={`${item.id}`} className="d-flex link-css">
               <div className="card shadow mt-4 text-center">
 
                 <img src={`${item.thumbnail.path}.${item.thumbnail.extension}`} width="300px" height="300px" alt="#" />

@@ -7,22 +7,22 @@ function Footer() {
     <div className="text-center text-lg-start footer--bg__negro footer--border text-light">
       <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
         <div className="container text-center ">
-          <a className="btn text-white btn-floating btn-circle btn-foot footer--bgfacebook mx-3" href="#!">
+          <a className="btn text-white btn-floating btn-circle btn-foot footer--bgfacebook mx-3" href="https://www.facebook.com/imor.eu/">
             <i className="fab fa-facebook " />
           </a>
-          <a className="btn text-white btn-floating btn-circle btn-foot footer--bgtwitter mx-3" href="#!">
+          <a className="btn text-white btn-floating btn-circle btn-foot footer--bgtwitter mx-3" href="https://twitter.com/dani_mople">
             <i className="fab fa-twitter" />
           </a>
-          <a className="btn text-white btn-floating btn-circle btn-foot footer--bggoogle mx-3" href="#!">
+          <a className="btn text-white btn-floating btn-circle btn-foot footer--bggoogle mx-3" href="https://www.google.es/">
             <i className="fab fa-google" />
           </a>
-          <a className="btn text-white btn-floating btn-circle btn-foot footer--bginstagram mx-3" href="#!">
+          <a className="btn text-white btn-floating btn-circle btn-foot footer--bginstagram mx-3" href="https://www.instagram.com/iesazarquiel/">
             <i className="fab fa-instagram" />
           </a>
-          <a className="btn text-white btn-floating btn-circle btn-foot footer--bglinkedin mx-3" href="#!">
+          <a className="btn text-white btn-floating btn-circle btn-foot footer--bglinkedin mx-3" href="https://www.linkedin.com/company/iron-man-lifestyle/">
             <i className="fab fa-linkedin-in" />
           </a>
-          <a className="btn text-white btn-floating btn-circle btn-foot footer--bggithub mx-3" href="#!">
+          <a className="btn text-white btn-floating btn-circle btn-foot footer--bggithub mx-3" href="https://github.com/miguixinfo/proyecto-final-react">
             <i className="fab fa-github" />
           </a>
         </div>
@@ -51,6 +51,7 @@ function Footer() {
                 <a href="paginaslegales.html" className="text-reset text-decoration-none">Política de cookies</a>
               </p>
             </div>
+
             <div className="col-md-2 col-lg-2 col-xl-2 mr-5 mb-4">
               <h6 className="text-uppercase fw-bold mb-4">
                 Productos
