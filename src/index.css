@@ -1,76 +1,76 @@
-#bg-image {
+#inicio--imgfondo {
   background-image: url(assets/fondo-personajes.jpg);
   background-size: cover;
   height: 600px;
 }
 
-#mask {
+#inicio--imgfondo__mask {
   background-color: rgba(0, 0, 0, 0.7);
   width: 100%;
   height: 600px;
 }
 
-.ul-nav {
+.navbar--ul {
   list-style-type: none;
   overflow: hidden;
   text-align: left;
 }
 
-.li-nav {
+.navbar--li {
   float: left;
 }
 
-.li-nav-navlink {
+.navbar--navlink{
   display: block;
   color: white;
   text-align: center;
   text-decoration: none;
 }
 
-.bg-rojomarvel {
+.navbar--bg__rojomarvel {
   background-color: #ED1C24;
 }
 
-.third {
+.navbar--btn {
   border-color: #b90000;
   color: #fff;
   -webkit-transition: all 300ms ease-in-out;
   transition: all 300ms ease-in-out;
 }
 
-.third:hover {
+.navbar--btn:hover {
   box-shadow: 0 0 10px 0 #b90000 inset, 0 0 10px 4px #b90000;
 }
 
-.bg-negro {
+.footer--bg__negro {
   background-color: black;
 }
 
-.border-foot {
+.footer--border {
   border-top: 1px solid white;
 }
 
-.bg-facebook {
+.footer--bgfacebook {
   background-color: #3b5998
 }
 
-.bg-twitter {
+.footer--bgtwitter {
   background-color: #55acee
 }
 
-.bg-google {
+.footer--bggoogle {
   background-color: #dd4b39
 }
 
-.bg-instagram {
+.footer--bginstagram {
   background-color: #ac2bac
 }
 
-.bg-linkedin {
+.footer--bglinkedin {
   background-color: #0082ca
 }
 
-.bg-github {
+.footer--bggithub {
   background-color: #333333
 }
 
@@ -90,16 +90,71 @@
   overflow-x: hidden;
 }
 
-.card-css {
+.card--css {
   width: 60%;
   margin: 0 auto;
 }
 
 .link-css {
-  text-decoration: none;
   color: rgb(43, 43, 43);
+  text-decoration: none;
 }
 .link-css:hover {
   color: black;
-  text-shadow: 1px 1px 1px black;
+  text-shadow: 0px 0px 1px black;
+}
+
+.link-cards {
+  color: rgb(43, 43, 43);
+  text-decoration-style: solid;
+}
+.link-cards:hover {
+  color: black;
+  text-shadow: 0px 0px 1px black;
+  text-decoration: none;
+}
+
+#topBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 0;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: #f02c32;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 10px 0px 0px 10px;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+#topBtn:hover {
+  background-color: #ea080f;
+  color: black;
+}
+
+.paginacion--btn {
+  width: 100px;
+  border-color: #ED1C24;
+  color: #fff;
+  box-shadow: 0 0 40px 40px #ff343b inset, 0 0 0 0 #ff343b;
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+}
+.paginacion--btn:hover {
+  color: black;
+  box-shadow: 0 0 10px 40px #ea080f inset, 0 0 6px 2px #ea080f;
+  border-color: #ED1C24;
+  
+}
+
+.font--error {
+  font-size: 2em;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.font--404 {
+  font-size: 4em;
 }
