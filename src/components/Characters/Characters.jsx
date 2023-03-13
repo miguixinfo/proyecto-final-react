@@ -16,22 +16,30 @@ function Characters() {
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
+    setCurrentPage(1); // si escribes y borras el termino de busqueda vuelve a la pagina incial
   };
 
   // paginacion
   const loadCharacters = async () => {
     const offset = (currentPage - 1) * 20; // 20 characters per page
-    const response = await fetch(
-      `http://gateway.marvel.com/v1/public/characters?limit=20&offset=${offset}&ts=1&apikey=ad6ea905acb56b4f31146d812a2568a1&hash=e666c45f929cb194ce2111c743dc3ff9`,
-    );
-    const { data } = await response.json();
-    setCharacters(data.results);
-    setTotalPages(Math.ceil(data.total / 20));
+    if (searchTerm === '') {
+      const response = await fetch(
+        `http://gateway.marvel.com/v1/public/characters?limit=20&offset=${offset}&ts=1&apikey=ad6ea905acb56b4f31146d812a2568a1&hash=e666c45f929cb194ce2111c743dc3ff9`,
+      );
+      const { data } = await response.json();
+      setCharacters(data.results);
+      setTotalPages(Math.ceil(data.total / 20));
+    } else {
+      const response = await fetch(`http://gateway.marvel.com/v1/public/characters?limit=20&offset=${offset}&ts=1&apikey=ad6ea905acb56b4f31146d812a2568a1&hash=e666c45f929cb194ce2111c743dc3ff9&nameStartsWith=${searchTerm}`);
+      const { data } = await response.json();
+      setCharacters(data.results);
+      setTotalPages(Math.ceil(data.total / 20));
+    }
   };
 
   useEffect(() => {
-    loadCharacters();
-  }, [currentPage]);
+    loadCharacters(searchTerm);
+  }, [currentPage, searchTerm]);
 
   function handlePrevClick() {
     setCurrentPage(currentPage - 1);
