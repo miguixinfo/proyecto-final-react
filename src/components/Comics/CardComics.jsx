@@ -3,22 +3,29 @@ import { NavLink, useParams } from 'react-router-dom';
 import { getComic } from '../../services/Comics';
 
 function CardComics() {
+  // Esto carga el comicId que habíamos pasado en el NavLink de comics.jsx
   const { comicId } = useParams();
   const [comic, setComic] = useState();
   const [characters, setCharacter] = useState();
   const [series, setSeries] = useState();
 
   useEffect(() => {
+    // Con esta función que tenemos en comics.jsx, le pasamos el comicId.
     getComic(comicId).then((result) => {
+      // con setcomics guardo en comics result.data.results, y me sitúo ahí, y de esa forma saco
+      // la información del comic para ponerla en el card. Esto lo repito con series y characters
       setComic(result.data.results[0]);
       setCharacter(result.data.results[0].characters.items);
       setSeries(result.data.results[0].series);
     });
   }, [comicId]);
 
+  // Si no encuentra comic pone eso
   if (!comic) {
     return <div>Cargando...</div>;
   }
+  // Con esto en la ruta que le pasemos, la trocea, y como el último trozo es la id del character,
+  // la guardamos para el navlink
   function sacarIdCharacter(url) {
     const splited = url.split('/');
     return splited[splited.length - 1];
