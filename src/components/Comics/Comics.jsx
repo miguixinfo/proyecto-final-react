@@ -91,7 +91,7 @@ function Comics() {
         {/* A esto le damos con value serchterm, y ponemos que cuando cambie su valor se llame a la función handlechange que cambia el valor de la variable searchTerm */}
         <input type="text" placeholder="Busca un comic" className="form-control mt-4" value={searchTerm} onChange={handleChange} />
         {results.map((item) => (
-          <div className="col-3 d-flex flex-wrap">
+          <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12 d-flex flex-wrap">
 
             <NavLink to={`${item.id}`} className="d-flex link-css">
               <div className="card shadow mt-4 text-center">
