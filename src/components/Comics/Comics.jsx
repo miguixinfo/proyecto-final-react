@@ -22,21 +22,29 @@ function Comics() {
   //  La función handleChange se llama cada vez que se produce un cambio en el campo de búsqueda. Esta función toma el valor del campo de búsqueda y actualiza la variable de búsqueda setSearchTerm con el valor. Esto permite realizar búsquedas específicas en la URL cada vez que se produce un cambio en el campo de búsqueda.
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
+    setCurrentPage(1);
   };
 
   const loadComics = async () => {
     const offset = (currentPage - 1) * 20; // 20 comicsc per page
-    const response = await fetch(
-      `http://gateway.marvel.com/v1/public/comics?limit=20&offset=${offset}&ts=1&apikey=ad6ea905acb56b4f31146d812a2568a1&hash=e666c45f929cb194ce2111c743dc3ff9`,
-    );
-    const { data } = await response.json();
-    setComics(data.results);
-    setTotalPages(Math.ceil(data.total / 20));
+    if (searchTerm === '') {
+      const response = await fetch(
+        `http://gateway.marvel.com/v1/public/comics?limit=20&offset=${offset}&ts=1&apikey=ad6ea905acb56b4f31146d812a2568a1&hash=e666c45f929cb194ce2111c743dc3ff9`,
+      );
+      const { data } = await response.json();
+      setComics(data.results);
+      setTotalPages(Math.ceil(data.total / 20));
+    } else {
+      const response = await fetch(`http://gateway.marvel.com/v1/public/comics?limit=20&offset=${offset}&ts=1&apikey=ad6ea905acb56b4f31146d812a2568a1&hash=e666c45f929cb194ce2111c743dc3ff9&titleStartsWith=${searchTerm}`);
+      const { data } = await response.json();
+      setComics(data.results);
+      setTotalPages(Math.ceil(data.total / 20));
+    }
   };
 
   useEffect(() => {
     loadComics();
-  }, [currentPage]);
+  }, [currentPage, searchTerm]);
 
   function handlePrevClick() {
     setCurrentPage(currentPage - 1);
