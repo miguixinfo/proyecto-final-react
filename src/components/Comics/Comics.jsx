@@ -119,7 +119,9 @@ function Comics() {
         {/* Esto es para recorrer el array de comics */}
         {results.map((item) => (
           <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12 d-flex flex-wrap">
-
+            {/* Esto te lleva a la ruta comics/:comicsId, y te carga el card de ese
+            comic que está en el cardComics.jsx, además ese item id lo guarda y con
+            el use params lo volvemos a reutilizar en el cardCharacters */}
             <NavLink to={`${item.id}`} className="d-flex link-css">
               <div className="card shadow mt-4 text-center">
 

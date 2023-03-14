@@ -24,13 +24,14 @@ function CardComics() {
   if (!comic) {
     return <div>Cargando...</div>;
   }
-  // Con esto en la ruta que le pasemos, la trocea, y como el último trozo es la id del character,
-  // la guardamos para el navlink
+  // Con esto en la ruta que le pasemos, la trocea, y como el último trozo es la
+  // id del character (por eso ponemos el -1), la guardamos para el navlink
   function sacarIdCharacter(url) {
     const splited = url.split('/');
     return splited[splited.length - 1];
   }
 
+  // Aquí simplemente se retorna el comic con sus datos:
   return (
     <div className="card text-left card--css shadow my-5">
       <div className="row">
