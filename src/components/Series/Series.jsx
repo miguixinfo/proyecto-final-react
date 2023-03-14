@@ -83,7 +83,7 @@ function Series() {
       <div className="row">
         <input type="text" className="form-control mt-4" placeholder="Busca una serie" value={searchTerm} onChange={handleChange} />
         {results.map((item) => (
-          <div className="col-3 d-flex flex-wrap">
+          <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12 d-flex flex-wrap">
             <NavLink to={`${item.id}`} className="d-flex link-css">
               <div className="card shadow mt-4 text-center">
                 <img src={`${item.thumbnail.path}.${item.thumbnail.extension}`} width="300px" height="300px" alt="#" />
