@@ -85,17 +85,16 @@ function Characters() {
         nextLabel="Next"
         pageCount={totalPages}
         onPageChange={({ selected }) => setCurrentPage(selected + 1)}
-        containerClassName="pagination justify-content-center"
-        pageClassName="page-item"
-        pageLinkClassName="page-link"
-        previousClassName="page-item"
-        previousLinkClassName="page-link"
-        nextClassName="page-item"
-        nextLinkClassName="page-link"
-        activeClassName="active"
+        containerClassName="pagination justify-content-center mt-5 "
+        pageClassName="page-item "
+        pageLinkClassName="page-link btn text-light btn-block btnPaginacion"
+        previousClassName="page-item "
+        previousLinkClassName="page-link btn text-light btn-block paginacion--btnPN"
+        nextClassName="page-item "
+        nextLinkClassName="page-link btn text-light btn-block paginacion--btnPN"
+        activeClassName="active "
         initialPage={currentPage - 1}
       />
-
       <div className="div">
         <button type="button" onClick={topFunction} id="topBtn" title="Go to top">
           <i className="fa-regular fa-circle-up" />

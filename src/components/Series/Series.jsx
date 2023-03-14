@@ -87,9 +87,9 @@ function Series() {
         pageClassName="page-item "
         pageLinkClassName="page-link btn text-light btn-block btnPaginacion"
         previousClassName="page-item "
-        previousLinkClassName="page-link btn text-light btn-block btnPaginacionPN"
+        previousLinkClassName="page-link btn text-light btn-block paginacion--btnPN"
         nextClassName="page-item "
-        nextLinkClassName="page-link btn text-light btn-block btnPaginacionPN"
+        nextLinkClassName="page-link btn text-light btn-block paginacion--btnPN"
         activeClassName="active "
         initialPage={currentPage - 1}
       />
