@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import ReactPaginate from 'react-paginate';
 import { getSeries } from '../../services/Series';
 import '../../index.css';
 
@@ -31,14 +32,6 @@ function Series() {
   useEffect(() => {
     loadSeries();
   }, [currentPage]);
-
-  function handlePrevClick() {
-    setCurrentPage(currentPage - 1);
-  }
-
-  function handleNextClick() {
-    setCurrentPage(currentPage + 1);
-  }
   const results = !searchTerm
     ? series
     : series.filter((item) => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
@@ -61,18 +54,6 @@ function Series() {
     document.documentElement.scrollTop = 0;
   }
 
-  // Funcion para poner dos (o mas) funciones a la vez en el onClick de Next
-  function hacerTodoNext() {
-    handleNextClick();
-    topFunction();
-  }
-
-  // Funcion (igual a la anterior) pero para Previous
-  function hacerTodoPrevious() {
-    handlePrevClick();
-    topFunction();
-  }
-
   return (
     <div className="container mb-4">
       <div className="row">
@@ -89,16 +70,21 @@ function Series() {
         ))}
 
       </div>
-      <div className="d-flex justify-content-center align-items-center">
-        <div className="btn-group">
-          <button type="button" className="btn text-light btn-block btnPaginacion my-5" onClick={hacerTodoPrevious} disabled={currentPage === 1}>
-            Previous
-          </button>
-          <button type="button" className="btn text-light btn-block btnPaginacion my-5" onClick={hacerTodoNext} disabled={currentPage === totalPages}>
-            Next
-          </button>
-        </div>
-      </div>
+      <ReactPaginate
+        previousLabel="Previous"
+        nextLabel="Next"
+        pageCount={totalPages}
+        onPageChange={({ selected }) => setCurrentPage(selected + 1)}
+        containerClassName="pagination justify-content-center"
+        pageClassName="page-item"
+        pageLinkClassName="page-link"
+        previousClassName="page-item"
+        previousLinkClassName="page-link"
+        nextClassName="page-item"
+        nextLinkClassName="page-link"
+        activeClassName="active"
+        initialPage={currentPage - 1}
+      />
       <div className="div">
         <button type="button" onClick={topFunction} id="topBtn" title="Go to top">
           <i className="fa-regular fa-circle-up" />
