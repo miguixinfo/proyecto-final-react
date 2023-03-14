@@ -38,7 +38,7 @@ function Series() {
   };
   useEffect(() => {
     loadSeries();
-  }, [currentPage]);
+  }, [currentPage, searchTerm]);
 
   const results = !searchTerm
     ? series
