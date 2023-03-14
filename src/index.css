@@ -136,9 +136,25 @@
   color: black;
 }
 
-.btnPaginacion {
+.btnPaginacionPN {
   width: 100px;
+  margin: 0 3px 0 3px;
   border-color: #ED1C24;
+  color: #fff;
+  box-shadow: 0 0 40px 40px #ff343b inset, 0 0 0 0 #ff343b;
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+}
+.btnPaginacionPN:hover {
+  color: black;
+  box-shadow: 0 0 10px 40px #ea080f inset, 0 0 6px 2px #ea080f;
+  border-color: #ED1C24;
+  
+}
+
+.btnPaginacion {
+  border-color: #ED1C24;
+  margin: 0 3px 0 3px;
   color: #fff;
   box-shadow: 0 0 40px 40px #ff343b inset, 0 0 0 0 #ff343b;
   -webkit-transition: all 150ms ease-in-out;
