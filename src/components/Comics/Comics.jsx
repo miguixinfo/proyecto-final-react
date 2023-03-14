@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { getComics } from '../../services/Comics';
+import { getComics, getComicPag, getComicBusqueda } from '../../services/Comics';
 import '../../index.css';
 
 function Comics() {
@@ -36,21 +36,25 @@ function Comics() {
     const offset = (currentPage - 1) * 20; // 20 comicsc por page
     // Si el término de búsqueda está vacío usa este fetch que muestra todos los comics
     if (searchTerm === '') {
-      const response = await fetch(
-        `http://gateway.marvel.com/v1/public/comics?limit=20&offset=${offset}&ts=1&apikey=ad6ea905acb56b4f31146d812a2568a1&hash=e666c45f929cb194ce2111c743dc3ff9`,
-      );
-      const { data } = await response.json();
-      setComics(data.results);
-      // eslint-disable-next-line max-len
-      // Esto es para saber el total de páginas dividiendo el total de los comics entre 20 que son los que vamos a mostrar en cada página
-      setTotalPages(Math.ceil(data.total / 20));
+      getComicPag(offset).then((result) => {
+        // con setcomics guardo en comics result.data.results, y me sitúo ahí, y de esa forma saco
+        // la información del comic para ponerla en el card. Esto lo repito con series y characters
+        setComics(result.results);
+        // eslint-disable-next-line max-len
+        // Esto es para saber el total de páginas dividiendo el total de los comics entre 20 que son los que vamos a mostrar en cada página
+        setTotalPages(Math.ceil(result.total / 20));
+      });
     } else {
       // eslint-disable-next-line max-len
       // Este es para que cuando en la barra de búsqueda queremos buscar según como empiece el nombre del comic
-      const response = await fetch(`http://gateway.marvel.com/v1/public/comics?limit=20&offset=${offset}&ts=1&apikey=ad6ea905acb56b4f31146d812a2568a1&hash=e666c45f929cb194ce2111c743dc3ff9&titleStartsWith=${searchTerm}`);
-      const { data } = await response.json();
-      setComics(data.results);
-      setTotalPages(Math.ceil(data.total / 20));
+      getComicBusqueda(offset, searchTerm).then((result) => {
+        // con setcomics guardo en comics result.data.results, y me sitúo ahí, y de esa forma saco
+        // la información del comic para ponerla en el card. Esto lo repito con series y characters
+        setComics(result.results);
+        // eslint-disable-next-line max-len
+        // Esto es para saber el total de páginas dividiendo el total de los comics entre 20 que son los que vamos a mostrar en cada página
+        setTotalPages(Math.ceil(result.total / 20));
+      });
     }
   };
 

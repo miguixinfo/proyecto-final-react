@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { getSeries } from '../../services/Series';
+import { getSeries, getSerieBusqueda, getSeriePag } from '../../services/Series';
 import '../../index.css';
 
 function Series() {
@@ -20,19 +20,17 @@ function Series() {
   };
 
   const loadSeries = async () => {
-    const offset = (currentPage - 1) * 20; // 20 comicsc per page
+    const offset = (currentPage - 1) * 20; // 20 series por page
     if (searchTerm === '') {
-      const response = await fetch(
-        `http://gateway.marvel.com/v1/public/series?limit=20&offset=${offset}&ts=1&apikey=ad6ea905acb56b4f31146d812a2568a1&hash=e666c45f929cb194ce2111c743dc3ff9`,
-      );
-      const { data } = await response.json();
-      setSeries(data.results);
-      setTotalPages(Math.ceil(data.total / 20));
+      getSeriePag(offset).then((result) => {
+        setSeries(result.results);
+        setTotalPages(Math.ceil(result.total / 20));
+      });
     } else {
-      const response = await fetch(`http://gateway.marvel.com/v1/public/series?limit=20&offset=${offset}&ts=1&apikey=ad6ea905acb56b4f31146d812a2568a1&hash=e666c45f929cb194ce2111c743dc3ff9&titleStartsWith=${searchTerm}`);
-      const { data } = await response.json();
-      setSeries(data.results);
-      setTotalPages(Math.ceil(data.total / 20));
+      getSerieBusqueda(offset, searchTerm).then((result) => {
+        setSeries(result.results);
+        setTotalPages(Math.ceil(result.total / 20));
+      });
     }
   };
   useEffect(() => {
