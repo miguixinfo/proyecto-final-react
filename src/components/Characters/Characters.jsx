@@ -16,22 +16,30 @@ function Characters() {
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
+    setCurrentPage(1); // si escribes y borras el termino de busqueda vuelve a la pagina incial
   };
 
   // paginacion
   const loadCharacters = async () => {
     const offset = (currentPage - 1) * 20; // 20 characters per page
-    const response = await fetch(
-      `http://gateway.marvel.com/v1/public/characters?limit=20&offset=${offset}&ts=1&apikey=ad6ea905acb56b4f31146d812a2568a1&hash=e666c45f929cb194ce2111c743dc3ff9`,
-    );
-    const { data } = await response.json();
-    setCharacters(data.results);
-    setTotalPages(Math.ceil(data.total / 20));
+    if (searchTerm === '') {
+      const response = await fetch(
+        `http://gateway.marvel.com/v1/public/characters?limit=20&offset=${offset}&ts=1&apikey=ad6ea905acb56b4f31146d812a2568a1&hash=e666c45f929cb194ce2111c743dc3ff9`,
+      );
+      const { data } = await response.json();
+      setCharacters(data.results);
+      setTotalPages(Math.ceil(data.total / 20));
+    } else {
+      const response = await fetch(`http://gateway.marvel.com/v1/public/characters?limit=20&offset=${offset}&ts=1&apikey=ad6ea905acb56b4f31146d812a2568a1&hash=e666c45f929cb194ce2111c743dc3ff9&nameStartsWith=${searchTerm}`);
+      const { data } = await response.json();
+      setCharacters(data.results);
+      setTotalPages(Math.ceil(data.total / 20));
+    }
   };
 
   useEffect(() => {
-    loadCharacters();
-  }, [currentPage]);
+    loadCharacters(searchTerm);
+  }, [currentPage, searchTerm]);
 
   function handlePrevClick() {
     setCurrentPage(currentPage - 1);
@@ -91,10 +99,10 @@ function Characters() {
       </div>
       <div className="d-flex justify-content-center align-items-center">
         <div className="btn-group">
-          <button type="button" className="btn text-light btn-block btnPaginacion my-5" onClick={hacerTodoPrevious} disabled={currentPage === 1}>
+          <button type="button" className="btn text-light btn-block paginacion--btn my-5" onClick={hacerTodoPrevious} disabled={currentPage === 1}>
             Previous
           </button>
-          <button type="button" className="btn text-light btn-block btnPaginacion my-5" onClick={hacerTodoNext} disabled={currentPage === totalPages}>
+          <button type="button" className="btn text-light btn-block paginacion--btn my-5" onClick={hacerTodoNext} disabled={currentPage === totalPages}>
             Next
           </button>
         </div>

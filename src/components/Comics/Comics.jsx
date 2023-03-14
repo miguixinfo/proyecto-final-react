@@ -11,6 +11,7 @@ function Comics() {
   // Paginacion
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+
   // eslint-disable-next-line max-len
   /* Esta función se utiliza para recuperar datos de una URL específica con el método fetch. Primero hace una solicitud fetch a la URL especificada, luego toma la respuesta y la convierte en un objeto JSON, luego establece la variable Comics con los resultados del objeto JSON y, por último, captura cualquier error que se produzca durante el proceso. */
 
@@ -20,23 +21,44 @@ function Comics() {
 
   // eslint-disable-next-line max-len
   //  La función handleChange se llama cada vez que se produce un cambio en el campo de búsqueda. Esta función toma el valor del campo de búsqueda y actualiza la variable de búsqueda setSearchTerm con el valor. Esto permite realizar búsquedas específicas en la URL cada vez que se produce un cambio en el campo de búsqueda.
+
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
+    setCurrentPage(1);
   };
+
+  // eslint-disable-next-line max-len
+  //  Esta función toma en cuenta la página actual (currentPage) y la cadena de búsqueda (searchTerm) y carga un máximo de 20 cómics por página.
 
   const loadComics = async () => {
-    const offset = (currentPage - 1) * 20; // 20 comicsc per page
-    const response = await fetch(
-      `http://gateway.marvel.com/v1/public/comics?limit=20&offset=${offset}&ts=1&apikey=ad6ea905acb56b4f31146d812a2568a1&hash=e666c45f929cb194ce2111c743dc3ff9`,
-    );
-    const { data } = await response.json();
-    setComics(data.results);
-    setTotalPages(Math.ceil(data.total / 20));
+    // eslint-disable-next-line max-len
+    // Primero, la función calcula el valor offset, que es la cantidad de cómics que deben omitirse para la página actual.
+    const offset = (currentPage - 1) * 20; // 20 comicsc por page
+    // Si el término de búsqueda está vacío usa este fetch que muestra todos los comics
+    if (searchTerm === '') {
+      const response = await fetch(
+        `http://gateway.marvel.com/v1/public/comics?limit=20&offset=${offset}&ts=1&apikey=ad6ea905acb56b4f31146d812a2568a1&hash=e666c45f929cb194ce2111c743dc3ff9`,
+      );
+      const { data } = await response.json();
+      setComics(data.results);
+      // eslint-disable-next-line max-len
+      // Esto es para saber el total de páginas dividiendo el total de los comics entre 20 que son los que vamos a mostrar en cada página
+      setTotalPages(Math.ceil(data.total / 20));
+    } else {
+      // eslint-disable-next-line max-len
+      // Este es para que cuando en la barra de búsqueda queremos buscar según como empiece el nombre del comic
+      const response = await fetch(`http://gateway.marvel.com/v1/public/comics?limit=20&offset=${offset}&ts=1&apikey=ad6ea905acb56b4f31146d812a2568a1&hash=e666c45f929cb194ce2111c743dc3ff9&titleStartsWith=${searchTerm}`);
+      const { data } = await response.json();
+      setComics(data.results);
+      setTotalPages(Math.ceil(data.total / 20));
+    }
   };
 
+  // eslint-disable-next-line max-len
+  /* Estas funciones son para que cuando dlickemos en el botón de next o de previous te añada o te reste uno al currentPage, esto nos sirve para la paginación, porque mostramos de 20 en 20 y depende de la página en la que estemos muestra unos personajes u otros. */
   useEffect(() => {
     loadComics();
-  }, [currentPage]);
+  }, [currentPage, searchTerm]);
 
   function handlePrevClick() {
     setCurrentPage(currentPage - 1);
@@ -45,6 +67,9 @@ function Comics() {
   function handleNextClick() {
     setCurrentPage(currentPage + 1);
   }
+
+  // eslint-disable-next-line max-len
+  /* Esto es para que si deslizas más de 20 px aparece un botón que si clickas te lleva arriba del todo de la página en la que estés */
   const topButton = document.getElementById('topBtn');
 
   function scrollFunction() {
@@ -63,7 +88,8 @@ function Comics() {
     document.documentElement.scrollTop = 0;
   }
 
-  // Funcion para poner dos (o mas) funciones a la vez en el onClick de Next
+  // eslint-disable-next-line max-len
+  // Funcion para poner dos (o mas) funciones a la vez en el onClick de Next, cuando pinches en next, te vuelve arriba del todo también.
   function hacerTodoNext() {
     handleNextClick();
     topFunction();
@@ -90,9 +116,12 @@ function Comics() {
         {/* eslint-disable-next-line max-len */}
         {/* A esto le damos con value serchterm, y ponemos que cuando cambie su valor se llame a la función handlechange que cambia el valor de la variable searchTerm */}
         <input type="text" placeholder="Busca un comic" className="form-control mt-4" value={searchTerm} onChange={handleChange} />
+        {/* Esto es para recorrer el array de comics */}
         {results.map((item) => (
           <div className="col-3 d-flex flex-wrap">
-
+            {/* Esto te lleva a la ruta comics/:comicsId, y te carga el card de ese
+            comic que está en el cardComics.jsx, además ese item id lo guarda y con
+            el use params lo volvemos a reutilizar en el cardCharacters */}
             <NavLink to={`${item.id}`} className="d-flex link-css">
               <div className="card shadow mt-4 text-center">
 
@@ -106,10 +135,12 @@ function Comics() {
       </div>
       <div className="d-flex justify-content-center align-items-center">
         <div className="btn-group">
-          <button type="button" className="btn text-light btn-block btnPaginacion my-5" onClick={hacerTodoPrevious} disabled={currentPage === 1}>
+          {/* Cuando la página sea la primera el boton previous se desactiva */}
+          <button type="button" className="btn text-light btn-block paginacion--btn my-5" onClick={hacerTodoPrevious} disabled={currentPage === 1}>
             Previous
           </button>
-          <button type="button" className="btn text-light btn-block btnPaginacion my-5" onClick={hacerTodoNext} disabled={currentPage === totalPages}>
+          {/* Cuando la página sea la útima el boton next se desactiva */}
+          <button type="button" className="btn text-light btn-block paginacion--btn my-5" onClick={hacerTodoNext} disabled={currentPage === totalPages}>
             Next
           </button>
         </div>
