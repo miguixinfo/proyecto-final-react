@@ -122,7 +122,7 @@ function Comics() {
         <input type="text" placeholder="Busca un comic" className="form-control mt-4" value={searchTerm} onChange={handleChange} />
         {/* Esto es para recorrer el array de comics */}
         {results.map((item) => (
-          <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12 d-flex flex-wrap">
+          <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12 d-flex flex-wrap justify-content-center">
             {/* Esto te lleva a la ruta comics/:comicsId, y te carga el card de ese
             comic que está en el cardComics.jsx, además ese item id lo guarda y con
             el use params lo volvemos a reutilizar en el cardCharacters */}
